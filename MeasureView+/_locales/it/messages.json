@@ -12,5 +12,12 @@
   "uploading": { "message": "Caricamento..." },
   "alertUploadSuccess": { "message": "File caricato con successo!" },
   "alertUploadFailed": { "message": "Caricamento non riuscito. Il server ha risposto con lo stato: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Si è verificato un errore durante il caricamento: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Si è verificato un errore durante il caricamento: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Scarica File Selezionati" },
+  "downloadFolder": { "message": "Scarica Cartella" },
+  "downloadFile": { "message": "Scarica questo file" },
+  "downloadProgress": { "message": "Download $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "Impossibile scaricare $COUNT$ file.", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Questa cartella non contiene file." },
+  "alertZipTooLarge": { "message": "Troppi dati per un zip (max 4 GB). Seleziona meno file o una cartella più piccola." }
 }

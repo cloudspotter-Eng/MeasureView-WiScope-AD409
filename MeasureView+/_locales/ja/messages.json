@@ -12,5 +12,12 @@
   "uploading": { "message": "アップロード中..." },
   "alertUploadSuccess": { "message": "ファイルのアップロードに成功しました！" },
   "alertUploadFailed": { "message": "アップロードに失敗しました。サーバーの応答ステータス: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "アップロード中にエラーが発生しました: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "アップロード中にエラーが発生しました: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "選択したファイルをダウンロード" },
+  "downloadFolder": { "message": "フォルダをダウンロード" },
+  "downloadFile": { "message": "このファイルをダウンロード" },
+  "downloadProgress": { "message": "ダウンロード中 $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ 個のファイルをダウンロードできませんでした。", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "このフォルダにはファイルがありません。" },
+  "alertZipTooLarge": { "message": "1つのzipにはデータが多すぎます（最大4 GB）。ファイル数を減らすか、小さいフォルダを選んでください。" }
 }

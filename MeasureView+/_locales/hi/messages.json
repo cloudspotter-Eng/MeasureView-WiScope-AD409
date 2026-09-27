@@ -12,5 +12,12 @@
   "uploading": { "message": "अपलोड हो रहा है..." },
   "alertUploadSuccess": { "message": "फ़ाइल सफलतापूर्वक अपलोड हो गई!" },
   "alertUploadFailed": { "message": "अपलोड विफल। सर्वर ने स्थिति के साथ प्रतिक्रिया दी: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "अपलोड के दौरान एक त्रुटि हुई: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "अपलोड के दौरान एक त्रुटि हुई: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "चयनित फ़ाइलें डाउनलोड करें" },
+  "downloadFolder": { "message": "फ़ोल्डर डाउनलोड करें" },
+  "downloadFile": { "message": "यह फ़ाइल डाउनलोड करें" },
+  "downloadProgress": { "message": "डाउनलोड हो रहा है $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ फ़ाइल(लें) डाउनलोड नहीं हो सकीं।", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "इस फ़ोल्डर में कोई फ़ाइल नहीं है।" },
+  "alertZipTooLarge": { "message": "एक zip के लिए बहुत अधिक डेटा (अधिकतम 4 GB)। कम फ़ाइलें या छोटा फ़ोल्डर चुनें।" }
 }

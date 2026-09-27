@@ -12,5 +12,12 @@
   "uploading": { "message": "上传中..." },
   "alertUploadSuccess": { "message": "文件上传成功！" },
   "alertUploadFailed": { "message": "上传失败。服务器响应状态：$STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "上传过程中发生错误：$MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "上传过程中发生错误：$MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "下载所选文件" },
+  "downloadFolder": { "message": "下载文件夹" },
+  "downloadFile": { "message": "下载此文件" },
+  "downloadProgress": { "message": "正在下载 $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ 个文件下载失败。", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "此文件夹中没有文件。" },
+  "alertZipTooLarge": { "message": "数据过多，无法放入一个 zip（最大 4 GB）。请选择更少的文件或更小的文件夹。" }
 }

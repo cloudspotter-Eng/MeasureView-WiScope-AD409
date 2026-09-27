@@ -12,5 +12,12 @@
   "uploading": { "message": "Завантаження..." },
   "alertUploadSuccess": { "message": "Файл успішно завантажено!" },
   "alertUploadFailed": { "message": "Завантаження не вдалося. Сервер відповів зі статусом: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Під час завантаження сталася помилка: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Під час завантаження сталася помилка: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Завантажити Вибрані Файли" },
+  "downloadFolder": { "message": "Завантажити Папку" },
+  "downloadFile": { "message": "Завантажити цей файл" },
+  "downloadProgress": { "message": "Завантаження $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "Не вдалося завантажити файлів: $COUNT$.", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "У цій папці немає файлів." },
+  "alertZipTooLarge": { "message": "Забагато даних для одного zip (макс. 4 ГБ). Виберіть менше файлів або меншу папку." }
 }

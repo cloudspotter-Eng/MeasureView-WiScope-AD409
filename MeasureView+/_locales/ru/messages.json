@@ -66,5 +66,39 @@
         "example": "Network error"
       }
     }
+  },
+  "downloadSelectedFiles": {
+    "message": "Скачать Выбранные Файлы"
+  },
+  "downloadFolder": {
+    "message": "Скачать Папку"
+  },
+  "downloadFile": {
+    "message": "Скачать этот файл"
+  },
+  "downloadProgress": {
+    "message": "Загрузка $CURRENT$/$TOTAL$...",
+    "placeholders": {
+      "current": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "alertDownloadFailed": {
+    "message": "Не удалось скачать файлов: $COUNT$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "alertFolderEmpty": {
+    "message": "В этой папке нет файлов."
+  },
+  "alertZipTooLarge": {
+    "message": "Слишком много данных для одного zip (макс. 4 ГБ). Выберите меньше файлов или папку поменьше."
   }
 }

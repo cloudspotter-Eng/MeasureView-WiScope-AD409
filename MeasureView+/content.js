@@ -27,6 +27,7 @@ if (!window.hasRunAd409Script) {
 	  chrome.runtime.sendMessage({ command: "registerTab" });
       createToolbar(contentWrapper);
       injectDeletionUI(); // Add the multi-delete feature
+      injectDownloadUI(); // Add the download buttons
 	  sortFileTableByDate()
       interceptUploads(); // Add the upload sanitization feature
 	  
@@ -321,7 +322,199 @@ if (!window.hasRunAd409Script) {
     });
   }
    
-   //  UPLOAD INTERCEPTION FUNCTIONALITY 
+  // DOWNLOAD FUNCTIONALITY
+  // The file's own link, never the "?del=1" Remove link on the same row
+  function fileLinkOf(row) {
+    return row.querySelector('a:not([href*="?del="])');
+  }
+
+  // The listing's "YYYY/MM/DD HH:MM:SS" file time, kept as the date inside zips
+  function fileDateOf(row) {
+    const m = row.textContent.match(/(\d{4})\/(\d\d)\/(\d\d) (\d\d):(\d\d):(\d\d)/);
+    return m ? new Date(m[1], m[2] - 1, m[3], m[4], m[5], m[6]) : new Date();
+  }
+
+  // "/DCIM/Photo/" -> "AD409_DCIM_Photo"
+  function zipBaseName(folderPath) {
+    return ['AD409', ...folderPath.split('/').filter(Boolean)].join('_');
+  }
+
+  function injectDownloadUI() {
+    const fileTable = document.querySelector('#body table');
+    if (!fileTable) return;
+    const folderPath = decodeURIComponent(location.pathname).replace(/\/?$/, '/');
+
+    const makeButton = (text) => {
+      const btn = document.createElement('button');
+      btn.textContent = text;
+      btn.style.margin = '10px 0 10px 8px';
+      btn.style.backgroundColor = '#B59DE2';
+      btn.style.borderColor = '#BCCACE';
+      fileTable.before(btn);
+      return btn;
+    };
+
+    const selectedBtn = makeButton(chrome.i18n.getMessage("downloadSelectedFiles"));
+    selectedBtn.addEventListener('click', () => {
+      const rows = [...document.querySelectorAll('.file-checkbox:checked')].map(box => box.closest('tr'));
+      if (rows.length === 0) {
+        alert(chrome.i18n.getMessage("alertNoFilesSelected"));
+        return;
+      }
+      if (rows.length === 1) {
+        saveUrl(fileLinkOf(rows[0]).href);
+        return;
+      }
+      const files = rows.map(row => ({
+        url: fileLinkOf(row).href,
+        path: fileLinkOf(row).textContent,
+        date: fileDateOf(row),
+      }));
+      downloadZip(files, `${zipBaseName(folderPath)}_selection.zip`, selectedBtn);
+    });
+
+    const folderBtn = makeButton(chrome.i18n.getMessage("downloadFolder"));
+    folderBtn.addEventListener('click', async () => {
+      folderBtn.disabled = true;
+      const files = await listFolderFiles(location.href, folderPath).finally(() => folderBtn.disabled = false);
+      if (files.length === 0) {
+        alert(chrome.i18n.getMessage("alertFolderEmpty"));
+        return;
+      }
+      downloadZip(files, `${zipBaseName(folderPath)}.zip`, folderBtn);
+    });
+
+    // A download button at the end of each file row
+    fileTable.querySelectorAll('tr').forEach(row => {
+      if (!row.querySelector('a[href*="?del=1"]')) return;
+      const btn = document.createElement('button');
+      btn.textContent = '\u2B07';
+      btn.title = chrome.i18n.getMessage("downloadFile");
+      btn.addEventListener('click', () => saveUrl(fileLinkOf(row).href));
+      row.insertCell().appendChild(btn);
+    });
+  }
+
+  // Every file under a folder, including subfolders, with its path relative to rootPath
+  async function listFolderFiles(folderUrl, rootPath, seen = new Set()) {
+    if (seen.has(folderUrl.toLowerCase())) return [];
+    seen.add(folderUrl.toLowerCase());
+
+    const html = await (await fetch(folderUrl)).text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    let files = [];
+    for (const row of doc.querySelectorAll('#body table tr')) {
+      const link = fileLinkOf(row);
+      if (!link) continue;
+      const url = new URL(link.getAttribute('href'), folderUrl).href;
+      if (row.querySelector('a[href*="?del=1"]')) {
+        const path = decodeURIComponent(new URL(url).pathname);
+        files.push({ url, path: path.startsWith(rootPath) ? path.slice(rootPath.length) : path, date: fileDateOf(row) });
+      } else if (row.querySelector('i')?.textContent === 'folder') {
+        files = files.concat(await listFolderFiles(url, rootPath, seen));
+      }
+    }
+    return files;
+  }
+
+  // Lets the browser download a URL (or blob URL) as a normal file
+  function saveUrl(url, filename = '') {
+    chrome.runtime.sendMessage({ command: "disablePreview" }); // save wifi BW when downloading
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click(); // detached link, so the viewer click handler below doesn't catch it
+  }
+
+  // Fetches files one by one into a zip. Parallel fetches don't help, the scope's wifi is the limit
+  async function downloadZip(files, zipName, button) {
+    const label = button.textContent;
+    button.disabled = true;
+    chrome.runtime.sendMessage({ command: "disablePreview" });
+
+    const zip = new ZipWriter();
+    let failed = 0;
+    try {
+      for (let i = 0; i < files.length; i++) {
+        button.textContent = chrome.i18n.getMessage("downloadProgress", [String(i + 1), String(files.length)]);
+        try {
+          const response = await fetch(files[i].url);
+          if (!response.ok) throw new Error(`status ${response.status}`);
+          zip.add(files[i].path, new Uint8Array(await response.arrayBuffer()), files[i].date);
+        } catch (error) {
+          if (error instanceof RangeError) throw error;
+          console.error(`Error downloading ${files[i].url}:`, error);
+          failed++;
+        }
+      }
+      const blobUrl = URL.createObjectURL(zip.finish());
+      saveUrl(blobUrl, zipName);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+      if (failed) alert(chrome.i18n.getMessage("alertDownloadFailed", String(failed)));
+    } catch (error) {
+      if (!(error instanceof RangeError)) throw error;
+      alert(chrome.i18n.getMessage("alertZipTooLarge"));
+    } finally {
+      button.textContent = label;
+      button.disabled = false;
+    }
+  }
+
+  // Minimal zip writer. Entries are stored uncompressed: photos and videos are already compressed.
+  // Each file becomes a Blob right away so large folders don't stay in JS memory.
+  const CRC_TABLE = Array.from({ length: 256 }, (_, n) => {
+    for (let k = 0; k < 8; k++) n = n & 1 ? 0xEDB88320 ^ (n >>> 1) : n >>> 1;
+    return n >>> 0;
+  });
+
+  function crc32(bytes) {
+    let crc = 0xFFFFFFFF;
+    for (let i = 0; i < bytes.length; i++) crc = CRC_TABLE[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  // Little-endian [value, byteCount] fields
+  function packFields(fields) {
+    const bytes = new Uint8Array(fields.reduce((n, [, size]) => n + size, 0));
+    const view = new DataView(bytes.buffer);
+    let at = 0;
+    for (const [value, size] of fields) {
+      size === 2 ? view.setUint16(at, value, true) : view.setUint32(at, value, true);
+      at += size;
+    }
+    return bytes;
+  }
+
+  class ZipWriter {
+    parts = [];
+    central = [];
+    offset = 0;
+
+    add(path, data, date) {
+      const name = new TextEncoder().encode(path);
+      // Plain zip is limited to 4 GB offsets
+      if (this.offset + 30 + name.length + data.length > 0xFFFFFFFF) throw new RangeError("zip too large");
+      const time = (date.getHours() << 11) | (date.getMinutes() << 5) | (date.getSeconds() >> 1);
+      const day = ((date.getFullYear() - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate();
+      // version 2.0, UTF-8 names, stored
+      const common = [[20, 2], [0x0800, 2], [0, 2], [time, 2], [day, 2], [crc32(data), 4],
+        [data.length, 4], [data.length, 4], [name.length, 2], [0, 2]];
+
+      const local = packFields([[0x04034b50, 4], ...common]);
+      this.parts.push(new Blob([local, name, data]));
+      this.central.push(packFields([[0x02014b50, 4], [20, 2], ...common, [0, 2], [0, 2], [0, 2], [0, 4], [this.offset, 4]]), name);
+      this.offset += local.length + name.length + data.length;
+    }
+
+    finish() {
+      const count = this.central.length / 2;
+      const size = this.central.reduce((n, part) => n + part.length, 0);
+      const end = packFields([[0x06054b50, 4], [0, 2], [0, 2], [count, 2], [count, 2], [size, 4], [this.offset, 4], [0, 2]]);
+      return new Blob([...this.parts, ...this.central, end], { type: 'application/zip' });
+    }
+  }
+
+   //  UPLOAD INTERCEPTION FUNCTIONALITY
   function interceptUploads() {
     // A helper function to attach our custom logic to a form
     const attachUploadInterceptor = (form) => {

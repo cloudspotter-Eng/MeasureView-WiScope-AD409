@@ -12,5 +12,12 @@
   "uploading": { "message": "Enviando..." },
   "alertUploadSuccess": { "message": "Arquivo enviado com sucesso!" },
   "alertUploadFailed": { "message": "Falha no envio. O servidor respondeu com o status: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Ocorreu um erro durante o envio: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Ocorreu um erro durante o envio: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Baixar Arquivos Selecionados" },
+  "downloadFolder": { "message": "Baixar Pasta" },
+  "downloadFile": { "message": "Baixar este arquivo" },
+  "downloadProgress": { "message": "Baixando $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "Falha ao baixar $COUNT$ arquivo(s).", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Esta pasta não tem arquivos." },
+  "alertZipTooLarge": { "message": "Dados demais para um zip (máx. 4 GB). Selecione menos arquivos ou uma pasta menor." }
 }

@@ -66,5 +66,39 @@
         "example": "Network error"
       }
     }
+  },
+  "downloadSelectedFiles": {
+    "message": "Geselecteerde Bestanden Downloaden"
+  },
+  "downloadFolder": {
+    "message": "Map Downloaden"
+  },
+  "downloadFile": {
+    "message": "Dit bestand downloaden"
+  },
+  "downloadProgress": {
+    "message": "Downloaden $CURRENT$/$TOTAL$...",
+    "placeholders": {
+      "current": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "alertDownloadFailed": {
+    "message": "$COUNT$ bestand(en) konden niet worden gedownload.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "alertFolderEmpty": {
+    "message": "Deze map bevat geen bestanden."
+  },
+  "alertZipTooLarge": {
+    "message": "Te veel gegevens voor één zip (max. 4 GB). Selecteer minder bestanden of een kleinere map."
   }
 }

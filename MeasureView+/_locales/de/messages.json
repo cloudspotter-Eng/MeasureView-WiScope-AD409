@@ -12,5 +12,12 @@
   "uploading": { "message": "Lade hoch..." },
   "alertUploadSuccess": { "message": "Datei erfolgreich hochgeladen!" },
   "alertUploadFailed": { "message": "Upload fehlgeschlagen. Der Server antwortete mit Status: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Beim Upload ist ein Fehler aufgetreten: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Beim Upload ist ein Fehler aufgetreten: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Ausgewählte Dateien herunterladen" },
+  "downloadFolder": { "message": "Ordner herunterladen" },
+  "downloadFile": { "message": "Diese Datei herunterladen" },
+  "downloadProgress": { "message": "Herunterladen $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ Datei(en) konnten nicht heruntergeladen werden.", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Dieser Ordner enthält keine Dateien." },
+  "alertZipTooLarge": { "message": "Zu viele Daten für ein Zip (max. 4 GB). Wählen Sie weniger Dateien oder einen kleineren Ordner." }
 }

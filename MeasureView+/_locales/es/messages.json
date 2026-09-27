@@ -12,5 +12,12 @@
   "uploading": { "message": "Subiendo..." },
   "alertUploadSuccess": { "message": "¡Archivo subido con éxito!" },
   "alertUploadFailed": { "message": "Fallo en la subida. El servidor respondió con el estado: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Ocurrió un error durante la subida: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Ocurrió un error durante la subida: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Descargar Archivos Seleccionados" },
+  "downloadFolder": { "message": "Descargar Carpeta" },
+  "downloadFile": { "message": "Descargar este archivo" },
+  "downloadProgress": { "message": "Descargando $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "No se pudieron descargar $COUNT$ archivo(s).", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Esta carpeta no tiene archivos." },
+  "alertZipTooLarge": { "message": "Demasiados datos para un zip (máx. 4 GB). Seleccione menos archivos o una carpeta más pequeña." }
 }

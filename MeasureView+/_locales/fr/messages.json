@@ -12,5 +12,12 @@
   "uploading": { "message": "Téléversement..." },
   "alertUploadSuccess": { "message": "Fichier téléversé avec succès !" },
   "alertUploadFailed": { "message": "Le téléversement a échoué. Le serveur a répondu avec le statut : $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Une erreur est survenue lors du téléversement : $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Une erreur est survenue lors du téléversement : $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Télécharger les Fichiers Sélectionnés" },
+  "downloadFolder": { "message": "Télécharger le Dossier" },
+  "downloadFile": { "message": "Télécharger ce fichier" },
+  "downloadProgress": { "message": "Téléchargement $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "Échec du téléchargement de $COUNT$ fichier(s).", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Ce dossier ne contient aucun fichier." },
+  "alertZipTooLarge": { "message": "Trop de données pour un zip (4 Go max). Sélectionnez moins de fichiers ou un dossier plus petit." }
 }

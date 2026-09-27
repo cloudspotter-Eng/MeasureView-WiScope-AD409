@@ -66,5 +66,46 @@
         "example": "Network error"
       }
     }
+  },
+  "downloadSelectedFiles": {
+    "message": "Download Selected Files",
+    "description": "Button text for downloading the selected files, as one zip file when several are selected."
+  },
+  "downloadFolder": {
+    "message": "Download Folder",
+    "description": "Button text for downloading the current folder and its subfolders as one zip file."
+  },
+  "downloadFile": {
+    "message": "Download this file",
+    "description": "Tooltip of the download button on each file row."
+  },
+  "downloadProgress": {
+    "message": "Downloading $CURRENT$/$TOTAL$...",
+    "description": "Text shown on a download button while files download. $CURRENT$ is the file number, $TOTAL$ the file count.",
+    "placeholders": {
+      "current": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "alertDownloadFailed": {
+    "message": "$COUNT$ file(s) failed to download.",
+    "description": "Alert when some downloads fail. $COUNT$ is the number of failed files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "alertFolderEmpty": {
+    "message": "This folder has no files.",
+    "description": "Alert when Download Folder finds no files."
+  },
+  "alertZipTooLarge": {
+    "message": "Too much data for one zip (4 GB max). Select fewer files or download a smaller folder.",
+    "description": "Alert when the files to zip exceed the 4 GB zip limit."
   }
 }

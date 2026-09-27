@@ -12,5 +12,12 @@
   "uploading": { "message": "Przesyłanie..." },
   "alertUploadSuccess": { "message": "Plik został pomyślnie przesłany!" },
   "alertUploadFailed": { "message": "Przesyłanie nie powiodło się. Serwer odpowiedział statusem: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Wystąpił błąd podczas przesyłania: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Wystąpił błąd podczas przesyłania: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Pobierz Zaznaczone Pliki" },
+  "downloadFolder": { "message": "Pobierz Folder" },
+  "downloadFile": { "message": "Pobierz ten plik" },
+  "downloadProgress": { "message": "Pobieranie $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "Nie udało się pobrać $COUNT$ plik(ów).", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Ten folder nie zawiera plików." },
+  "alertZipTooLarge": { "message": "Za dużo danych na jeden zip (maks. 4 GB). Wybierz mniej plików lub mniejszy folder." }
 }

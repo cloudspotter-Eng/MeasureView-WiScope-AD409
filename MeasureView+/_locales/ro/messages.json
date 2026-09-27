@@ -12,5 +12,12 @@
   "uploading": { "message": "Se încarcă..." },
   "alertUploadSuccess": { "message": "Fișier încărcat cu succes!" },
   "alertUploadFailed": { "message": "Încărcarea a eșuat. Serverul a răspuns cu starea: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "A apărut o eroare în timpul încărcării: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "A apărut o eroare în timpul încărcării: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Descarcă Fișierele Selectate" },
+  "downloadFolder": { "message": "Descarcă Folderul" },
+  "downloadFile": { "message": "Descarcă acest fișier" },
+  "downloadProgress": { "message": "Se descarcă $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ fișier(e) nu au putut fi descărcate.", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Acest folder nu conține fișiere." },
+  "alertZipTooLarge": { "message": "Prea multe date pentru un zip (max. 4 GB). Selectați mai puține fișiere sau un folder mai mic." }
 }

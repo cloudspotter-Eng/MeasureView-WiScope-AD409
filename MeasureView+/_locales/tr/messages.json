@@ -12,5 +12,12 @@
   "uploading": { "message": "Yükleniyor..." },
   "alertUploadSuccess": { "message": "Dosya başarıyla yüklendi!" },
   "alertUploadFailed": { "message": "Yükleme başarısız oldu. Sunucu yanıt durumu: $STATUS$", "placeholders": { "status": { "content": "$1" } } },
-  "alertUploadError": { "message": "Yükleme sırasında bir hata oluştu: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } }
+  "alertUploadError": { "message": "Yükleme sırasında bir hata oluştu: $MESSAGE$", "placeholders": { "message": { "content": "$1" } } },
+  "downloadSelectedFiles": { "message": "Seçili Dosyaları İndir" },
+  "downloadFolder": { "message": "Klasörü İndir" },
+  "downloadFile": { "message": "Bu dosyayı indir" },
+  "downloadProgress": { "message": "İndiriliyor $CURRENT$/$TOTAL$...", "placeholders": { "current": { "content": "$1" }, "total": { "content": "$2" } } },
+  "alertDownloadFailed": { "message": "$COUNT$ dosya indirilemedi.", "placeholders": { "count": { "content": "$1" } } },
+  "alertFolderEmpty": { "message": "Bu klasörde dosya yok." },
+  "alertZipTooLarge": { "message": "Tek bir zip için çok fazla veri (en fazla 4 GB). Daha az dosya veya daha küçük bir klasör seçin." }
 }
